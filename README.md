@@ -21,5 +21,5 @@
   - Ketik URL `http://localhost/spk-pemilihan-laptop/` untuk masuk ke halaman utama
 
 ### Akun Admin
-Username : admin
-Password : admin
+Username : `admin`
+Password : `admin`
