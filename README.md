@@ -1,6 +1,6 @@
 ﻿# spk-pemilihan-laptop
 
-Cara Pakai
+### Cara Pakai
 1. Download Project
   - Klik Code
   - Download ZIP
