@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Agu 2023 pada 03.39
+-- Waktu pembuatan: 17 Agu 2023 pada 08.59
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `spk_pem_lemari`
+-- Database: `spk_pem_laptop`
 --
 
 -- --------------------------------------------------------
@@ -31,19 +31,24 @@ CREATE TABLE `alternatif` (
   `id_alternatif` int(11) NOT NULL,
   `nama_alternatif` varchar(50) NOT NULL,
   `gambar` varchar(100) NOT NULL,
-  `design` varchar(10) NOT NULL
+  `f_id_kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `alternatif`
 --
 
-INSERT INTO `alternatif` (`id_alternatif`, `nama_alternatif`, `gambar`, `design`) VALUES
-(1, 'Hamster LP 202', '1.jpg', 'Motif'),
-(2, 'JAZZ LP 301', '2.jpg', 'Warna'),
-(3, 'SPIN SL 80', '3.jpg', 'Motif'),
-(4, 'Primo BL 120', '4.jpg', 'Motif'),
-(5, 'SLIDE 211', '5.jpg', 'Warna');
+INSERT INTO `alternatif` (`id_alternatif`, `nama_alternatif`, `gambar`, `f_id_kategori`) VALUES
+(15, 'Asus A516ma', 'Screenshot 2022-11-21 120809.png', 1),
+(16, 'Asus Tuff', 'Screenshot (7).png', 1),
+(17, 'Acer Aspire 3', 'Screenshot (13).png', 2),
+(18, 'Acer E5-471', 'Screenshot (7)_1.png', 2),
+(19, 'HP 15S', 'Screenshot (9).png', 3),
+(20, 'HP 240-G7', 'Screenshot (2).png', 3),
+(21, 'DELL Latitude E54', 'Screenshot (2)_1.png', 4),
+(22, 'DELL Latitude', 'Screenshot (1)_1.png', 4),
+(23, 'Lenovo ThinPad', 'Screenshot (1)_2.png', 5),
+(24, 'Apple M1', 'Screenshot (1)_3.png', 6);
 
 -- --------------------------------------------------------
 
@@ -58,6 +63,9 @@ CREATE TABLE `bobot_kriteria` (
   `C3` float NOT NULL,
   `C4` float NOT NULL,
   `C5` float NOT NULL,
+  `C6` float NOT NULL,
+  `C7` float NOT NULL,
+  `C8` float NOT NULL,
   `f_id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -65,8 +73,31 @@ CREATE TABLE `bobot_kriteria` (
 -- Dumping data untuk tabel `bobot_kriteria`
 --
 
-INSERT INTO `bobot_kriteria` (`id_bobot`, `C1`, `C2`, `C3`, `C4`, `C5`, `f_id_user`) VALUES
-(2, 0.2, 0.3, 0.2, 0.2, 0.1, 7);
+INSERT INTO `bobot_kriteria` (`id_bobot`, `C1`, `C2`, `C3`, `C4`, `C5`, `C6`, `C7`, `C8`, `f_id_user`) VALUES
+(8, 0.25, 0.2, 0.15, 0.15, 0.1, 0.05, 0.05, 0.05, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kategori_alt`
+--
+
+CREATE TABLE `kategori_alt` (
+  `id_kategori` int(11) NOT NULL,
+  `nama_kategori` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kategori_alt`
+--
+
+INSERT INTO `kategori_alt` (`id_kategori`, `nama_kategori`) VALUES
+(1, 'Asus'),
+(2, 'Acer'),
+(3, 'HP'),
+(4, 'DELL'),
+(5, 'Lenovo'),
+(6, 'Apple');
 
 -- --------------------------------------------------------
 
@@ -86,31 +117,86 @@ CREATE TABLE `kec_alt_kriteria` (
 --
 
 INSERT INTO `kec_alt_kriteria` (`id_alt_kriteria`, `f_id_alternatif`, `f_id_kriteria`, `f_id_sub_kriteria`) VALUES
-(1, 1, 'C1', 2),
-(2, 1, 'C2', 10),
-(3, 1, 'C3', 11),
-(4, 1, 'C4', 18),
-(6, 2, 'C1', 3),
-(7, 2, 'C2', 9),
-(8, 2, 'C3', 15),
-(9, 2, 'C4', 16),
-(11, 3, 'C1', 1),
-(12, 3, 'C2', 8),
-(13, 3, 'C3', 12),
-(14, 3, 'C4', 16),
-(16, 4, 'C1', 1),
-(17, 4, 'C2', 9),
-(18, 4, 'C3', 11),
-(19, 4, 'C4', 19),
-(21, 5, 'C1', 4),
-(22, 5, 'C2', 10),
-(23, 5, 'C3', 15),
-(24, 5, 'C4', 16),
-(56, 1, 'C5', 31),
-(57, 2, 'C5', 33),
-(58, 4, 'C5', 33),
-(59, 5, 'C5', 32),
-(60, 3, 'C5', 31);
+(66, 15, 'C1', 39),
+(67, 15, 'C2', 43),
+(68, 15, 'C3', 47),
+(69, 15, 'C4', 50),
+(70, 15, 'C5', 54),
+(71, 15, 'C6', 57),
+(72, 15, 'C7', 59),
+(73, 15, 'C8', 63),
+(74, 16, 'C1', 38),
+(75, 16, 'C2', 44),
+(76, 16, 'C3', 46),
+(77, 16, 'C4', 49),
+(78, 16, 'C5', 54),
+(79, 16, 'C6', 57),
+(80, 16, 'C7', 58),
+(81, 16, 'C8', 63),
+(82, 17, 'C1', 38),
+(83, 17, 'C2', 44),
+(84, 17, 'C3', 45),
+(85, 17, 'C4', 49),
+(86, 17, 'C5', 54),
+(87, 17, 'C6', 57),
+(88, 17, 'C7', 61),
+(89, 17, 'C8', 63),
+(90, 18, 'C1', 37),
+(91, 18, 'C2', 44),
+(92, 18, 'C3', 46),
+(93, 18, 'C4', 50),
+(94, 18, 'C5', 54),
+(95, 18, 'C6', 57),
+(96, 18, 'C7', 58),
+(97, 18, 'C8', 63),
+(98, 19, 'C1', 39),
+(99, 19, 'C2', 44),
+(100, 19, 'C3', 46),
+(101, 19, 'C4', 49),
+(102, 19, 'C5', 53),
+(103, 19, 'C6', 57),
+(104, 19, 'C7', 58),
+(105, 19, 'C8', 63),
+(106, 20, 'C1', 37),
+(107, 20, 'C2', 44),
+(108, 20, 'C3', 46),
+(109, 20, 'C4', 49),
+(110, 20, 'C5', 54),
+(111, 20, 'C6', 57),
+(112, 20, 'C7', 60),
+(113, 20, 'C8', 62),
+(114, 21, 'C1', 39),
+(115, 21, 'C2', 44),
+(116, 21, 'C3', 45),
+(117, 21, 'C4', 51),
+(118, 21, 'C5', 53),
+(119, 21, 'C6', 56),
+(120, 21, 'C7', 58),
+(121, 21, 'C8', 63),
+(122, 22, 'C1', 37),
+(123, 22, 'C2', 44),
+(124, 22, 'C3', 46),
+(125, 22, 'C4', 50),
+(126, 22, 'C5', 54),
+(127, 22, 'C6', 57),
+(128, 22, 'C7', 59),
+(129, 22, 'C8', 62),
+(130, 23, 'C1', 38),
+(131, 23, 'C2', 44),
+(132, 23, 'C3', 47),
+(133, 23, 'C4', 49),
+(134, 23, 'C5', 54),
+(135, 23, 'C6', 57),
+(136, 23, 'C7', 59),
+(137, 23, 'C8', 63),
+(138, 24, 'C1', 38),
+(139, 24, 'C2', 43),
+(140, 24, 'C3', 46),
+(141, 24, 'C4', 50),
+(142, 24, 'C5', 53),
+(143, 24, 'C6', 57),
+(144, 24, 'C7', 58),
+(145, 24, 'C8', 62);
 
 -- --------------------------------------------------------
 
@@ -128,11 +214,14 @@ CREATE TABLE `kriteria` (
 --
 
 INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`) VALUES
-('C1', 'Harga'),
-('C2', 'Kualitas'),
-('C3', 'Volume'),
-('C4', 'Kelengkapan'),
-('C5', 'Merek');
+('C1', 'RAM'),
+('C2', 'Merk Processor'),
+('C3', 'Harga'),
+('C4', 'Ukuran Penyimpanan'),
+('C5', 'Jenis Penyimpanan'),
+('C6', 'Sistem Operasi'),
+('C7', 'Daya Tahan Baterai'),
+('C8', 'Ukuran Layar');
 
 -- --------------------------------------------------------
 
@@ -152,27 +241,35 @@ CREATE TABLE `sub_kriteria` (
 --
 
 INSERT INTO `sub_kriteria` (`id_sub_kriteria`, `nama_sub_kriteria`, `bobot_sub_kriteria`, `f_id_kriteria`) VALUES
-(1, '500.000 ≤ Harga < 1.000.000', 4, 'C1'),
-(2, '1.000.000≤ Harga <1.500.000', 3, 'C1'),
-(3, '1.500.000 ≤ Harga <2 .000.000', 2, 'C1'),
-(4, 'Harga ≥ 2.000.000', 1, 'C1'),
-(8, 'Mudah lapuk,tidak kokoh,mudah terkena jamur', 1, 'C2'),
-(9, '(Tidak mudah lapuk,Kurang kokoh,anti jamur), (Tidak mudah lapuk,kokoh,mudah terkena jamur)\r\n(mudah lapuk, kokoh, anti jamur)', 3, 'C2'),
-(10, 'Kokoh, tidak mudah lapuk dan anti jamur', 5, 'C2'),
-(11, '〖400.000cm〗^3≤Luas<〖700.000cm〗^3', 1, 'C3'),
-(12, '〖700.000cm〗^3≤Luas<〖800.000cm〗^3', 2, 'C3'),
-(13, '〖800.000cm〗^3≤Luas<〖900.000cm〗^3', 3, 'C3'),
-(14, '〖900.000cm〗^3≤Luas<〖1.000.000cm〗^3', 4, 'C3'),
-(15, 'Luas ≥〖1.000.000cm〗^3', 5, 'C3'),
-(16, '4 kelengkapan', 4, 'C4'),
-(17, '3 kelengkapan', 3, 'C4'),
-(18, '2 kelengkapan', 2, 'C4'),
-(19, '1 kelengkapan', 1, 'C4'),
-(29, 'Pro design', 5, 'C5'),
-(30, 'Active', 4, 'C5'),
-(31, 'Olympic', 3, 'C5'),
-(32, 'Volare', 2, 'C5'),
-(33, 'Pire', 1, 'C5');
+(37, '4GB', 1, 'C1'),
+(38, '8GB', 2, 'C1'),
+(39, '16GB', 3, 'C1'),
+(40, '> 16GB', 4, 'C1'),
+(41, 'Apple', 1, 'C2'),
+(42, 'Cyrix', 2, 'C2'),
+(43, 'AMD', 3, 'C2'),
+(44, 'Intel', 4, 'C2'),
+(45, 'Rp. 2.000.000 < harga < Rp. 5.000.000', 4, 'C3'),
+(46, 'Rp. 5.000.000 ≤ harga < Rp. 8.000.000', 3, 'C3'),
+(47, 'Rp. 8.000.000 ≤ harga ≤ Rp. 12.000.000', 2, 'C3'),
+(48, '> Rp. 12.000.000', 1, 'C3'),
+(49, '256GB', 1, 'C4'),
+(50, '512GB', 2, 'C4'),
+(51, '1TB', 3, 'C4'),
+(52, '>1TB', 4, 'C4'),
+(53, 'HDD', 1, 'C5'),
+(54, 'SSD', 2, 'C5'),
+(55, 'Mac OS X', 1, 'C6'),
+(56, 'Linux', 2, 'C6'),
+(57, 'Ms.Windows', 3, 'C6'),
+(58, '≤ 5 jam', 1, 'C7'),
+(59, '5 jam < baterai ≤ 7 jam', 2, 'C7'),
+(60, '7 jam < baterai ≤ 9 jam', 3, 'C7'),
+(61, '>10 jam', 4, 'C7'),
+(62, '≤11 inci', 1, 'C8'),
+(63, '11 inci < layar ≤ 13 inci', 2, 'C8'),
+(64, '13 inci < layar ≤ 15 inci', 3, 'C8'),
+(65, '≥ 15 inci', 4, 'C8');
 
 -- --------------------------------------------------------
 
@@ -187,6 +284,9 @@ CREATE TABLE `tabel_tampung` (
   `prio3` varchar(50) NOT NULL,
   `prio4` varchar(50) NOT NULL,
   `prio5` varchar(50) NOT NULL,
+  `prio6` varchar(50) NOT NULL,
+  `prio7` varchar(50) NOT NULL,
+  `prio8` varchar(50) NOT NULL,
   `f_id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -194,8 +294,8 @@ CREATE TABLE `tabel_tampung` (
 -- Dumping data untuk tabel `tabel_tampung`
 --
 
-INSERT INTO `tabel_tampung` (`id`, `prio1`, `prio2`, `prio3`, `prio4`, `prio5`, `f_id_user`) VALUES
-(2, 'Kualitas', 'Volume', 'Harga', 'Kelengkapan', 'Merek', 7);
+INSERT INTO `tabel_tampung` (`id`, `prio1`, `prio2`, `prio3`, `prio4`, `prio5`, `prio6`, `prio7`, `prio8`, `f_id_user`) VALUES
+(27, 'RAM', 'Merk Processor', 'Ukuran Penyimpanan', 'Harga', 'Jenis Penyimpanan', 'Sistem Operasi', 'Daya Tahan Baterai', 'Ukuran Layar', 7);
 
 -- --------------------------------------------------------
 
@@ -216,7 +316,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
 (2, 'admin', '$2y$10$vKlD7o2zW7D0NyeRZ9gIOuq/H5cD/hjZgmjZ20.8.yRE9FHaJKqkq', 0),
-(7, 'yupi', '$2y$10$ZxU.kfq5Z4OIgfdL4MF8pOvO2Xwn.tvyo.2Yk.Ngmz8AXlYKsZONG', 1);
+(7, 'yupi', '$2y$10$ZxU.kfq5Z4OIgfdL4MF8pOvO2Xwn.tvyo.2Yk.Ngmz8AXlYKsZONG', 1),
+(10, 'pengguna', '$2y$10$tm/hKTjwdsY2jAvwJUxPpOsioCGbcpm0FiLsZ7sWtBa2z6.VxEYIW', 1);
 
 --
 -- Indexes for dumped tables
@@ -226,14 +327,22 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
 -- Indeks untuk tabel `alternatif`
 --
 ALTER TABLE `alternatif`
-  ADD PRIMARY KEY (`id_alternatif`);
+  ADD PRIMARY KEY (`id_alternatif`),
+  ADD KEY `f_id_kategori` (`f_id_kategori`);
 
 --
 -- Indeks untuk tabel `bobot_kriteria`
 --
 ALTER TABLE `bobot_kriteria`
   ADD PRIMARY KEY (`id_bobot`),
+  ADD UNIQUE KEY `f_id_user` (`f_id_user`),
   ADD KEY `id_user` (`f_id_user`);
+
+--
+-- Indeks untuk tabel `kategori_alt`
+--
+ALTER TABLE `kategori_alt`
+  ADD PRIMARY KEY (`id_kategori`);
 
 --
 -- Indeks untuk tabel `kec_alt_kriteria`
@@ -255,14 +364,14 @@ ALTER TABLE `kriteria`
 --
 ALTER TABLE `sub_kriteria`
   ADD PRIMARY KEY (`id_sub_kriteria`),
-  ADD KEY `f_id_kriteria` (`f_id_kriteria`),
-  ADD KEY `f_id_kriteria_2` (`f_id_kriteria`);
+  ADD KEY `f_id_kriteria` (`f_id_kriteria`);
 
 --
 -- Indeks untuk tabel `tabel_tampung`
 --
 ALTER TABLE `tabel_tampung`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `f_id_user_2` (`f_id_user`),
   ADD KEY `f_id_user` (`f_id_user`);
 
 --
@@ -279,41 +388,53 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `bobot_kriteria`
 --
 ALTER TABLE `bobot_kriteria`
-  MODIFY `id_bobot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_bobot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `kategori_alt`
+--
+ALTER TABLE `kategori_alt`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `kec_alt_kriteria`
 --
 ALTER TABLE `kec_alt_kriteria`
-  MODIFY `id_alt_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_alt_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT untuk tabel `sub_kriteria`
 --
 ALTER TABLE `sub_kriteria`
-  MODIFY `id_sub_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_sub_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT untuk tabel `tabel_tampung`
 --
 ALTER TABLE `tabel_tampung`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `alternatif`
+--
+ALTER TABLE `alternatif`
+  ADD CONSTRAINT `alternatif_ibfk_1` FOREIGN KEY (`f_id_kategori`) REFERENCES `kategori_alt` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `bobot_kriteria`
