@@ -1,21 +1,23 @@
 <?php 
 session_start();
 unset($_SESSION['menu']);
-$_SESSION['menu'] = 'lemari';
+$_SESSION['menu'] = 'laptop';
 require_once './header.php';
-require_once './functions/data_lemari.php';
-$dataAlternatif = $Lemari->getLemari();
-$dataSubHarga = $Lemari->getSubHarga();
-$dataSubKualitas = $Lemari->getSubKualitas();
-$dataSubVolume = $Lemari->getSubVolume();
-$dataSubKelengkapan = $Lemari->getSubKelengkapan();
-$dataSubMerek = $Lemari->getSubMerek();
-$dataDesign = ['Motif', 'Warna'];
+require_once './functions/data_laptop.php';
+$dataAlternatif = $Laptop->getLaptop();
+$dataSubRAM = $Laptop->getSubRAM();
+$dataSubProsesor = $Laptop->getSubProsesor();
+$dataSubHarga = $Laptop->getSubHarga();
+$dataSubUkuranPenyimpanan = $Laptop->getSubUkuranPenyimpanan();
+$dataSubJenisPenyimpanan = $Laptop->getSubJenisPenyimpanan();
+$dataSubSistemOperasi = $Laptop->getSubSistemOperasi();
+$dataSubDayaTahanBaterai = $Laptop->getSubDayaTahanBaterai();
+$dataSubUkuranLayar = $Laptop->getSubUkuranLayar();
+$dataKategori = $Laptop->getKategori();
 
 // tambah alternatif/lemari
 if(isset($_POST['tambah'])){
     $nama_alternatif = htmlspecialchars($_POST['nama_alternatif']);
-    $design = htmlspecialchars($_POST['design']);
     
     // Pastikan ada file gambar yang diunggah
     if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
@@ -43,26 +45,41 @@ if(isset($_POST['tambah'])){
 
         // Pindahkan file gambar dari lokasi sementara ke lokasi tujuan
         if (move_uploaded_file($lokasiSementara, $targetFilePath)) {
+            $ram = htmlspecialchars($_POST['ram']);
+            $prosesor = htmlspecialchars($_POST['prosesor']);
             $harga = htmlspecialchars($_POST['harga']);
-            $kualitas = htmlspecialchars($_POST['kualitas']);
-            $volume = htmlspecialchars($_POST['volume']);
-            $kelengkapan = htmlspecialchars($_POST['kelengkapan']);
-            $merek = htmlspecialchars($_POST['merek']);
+            $ukuran_penyimpanan = htmlspecialchars($_POST['ukuran_penyimpanan']);
+            $jenis_penyimpanan = htmlspecialchars($_POST['jenis_penyimpanan']);
+            $sistem_operasi = htmlspecialchars($_POST['sistem_operasi']);
+            $daya_tahan = htmlspecialchars($_POST['daya_tahan']);
+            $ukuran_layar = htmlspecialchars($_POST['ukuran_layar']);
+            $kategori = htmlspecialchars($_POST['kategori']);
         
-            $dataLemari = [
+            $dataLaptop = [
                 'nama_alternatif' => $nama_alternatif,
                 'gambar' => $namaFile,
-                'design' => $design
+                'ram' => $ram,
+                'prosesor' => $prosesor,
+                'harga' => $harga,
+                'ukuran_penyimpanan' => $ukuran_penyimpanan,
+                'jenis_penyimpanan' => $jenis_penyimpanan,
+                'sistem_operasi' => $sistem_operasi,
+                'daya_tahan' => $daya_tahan,
+                'ukuran_layar' => $ukuran_layar,
+                'kategori' => $kategori
             ];
             
             $dataKecAltKrit = [
-                'C1' => $harga,
-                'C2' => $kualitas,
-                'C3' => $volume,
-                'C4' => $kelengkapan,
-                'C5' => $merek
+                'C1' => $ram,
+                'C2' => $prosesor,
+                'C3' => $harga,
+                'C4' => $ukuran_penyimpanan,
+                'C5' => $jenis_penyimpanan,
+                'C6' => $sistem_operasi,
+                'C7' => $daya_tahan,
+                'C8' => $ukuran_layar
             ];
-            $Lemari->addDataLemari($dataLemari,$dataKecAltKrit);
+            $Laptop->addDataLaptop($dataLaptop,$dataKecAltKrit);
         } else {
             return $_SESSION['error'] = 'Tidak ada data yang dikirim!';
         }
@@ -75,8 +92,16 @@ if(isset($_POST['tambah'])){
 if(isset($_POST['edit'])){
     $id_alternatif = htmlspecialchars($_POST['id_alternatif']);
     $nama_alternatif = htmlspecialchars($_POST['nama_alternatif']);
-    $design = htmlspecialchars($_POST['design']);
-    
+    $ram = htmlspecialchars($_POST['ram']);
+    $prosesor = htmlspecialchars($_POST['prosesor']);
+    $harga = htmlspecialchars($_POST['harga']);
+    $ukuran_penyimpanan = htmlspecialchars($_POST['ukuran_penyimpanan']);
+    $jenis_penyimpanan = htmlspecialchars($_POST['jenis_penyimpanan']);
+    $sistem_operasi = htmlspecialchars($_POST['sistem_operasi']);
+    $daya_tahan = htmlspecialchars($_POST['daya_tahan']);
+    $ukuran_layar = htmlspecialchars($_POST['ukuran_layar']);
+    $kategori = htmlspecialchars($_POST['kategori']);
+
     // Pastikan ada file gambar yang diunggah
     if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
         $namaFile = $_FILES['gambar']['name'];
@@ -110,58 +135,84 @@ if(isset($_POST['edit'])){
                 unlink($pathGambarLama); // Hapus file gambar lama
             }
 
-            $harga = htmlspecialchars($_POST['harga']);
-            $kualitas = htmlspecialchars($_POST['kualitas']);
-            $volume = htmlspecialchars($_POST['volume']);
-            $kelengkapan = htmlspecialchars($_POST['kelengkapan']);
-            $merek = htmlspecialchars($_POST['merek']);
+            // $ram = htmlspecialchars($_POST['ram']);
+            // $prosesor = htmlspecialchars($_POST['prosesor']);
+            // $harga = htmlspecialchars($_POST['harga']);
+            // $ukuran_penyimpanan = htmlspecialchars($_POST['ukuran_penyimpanan']);
+            // $jenis_penyimpanan = htmlspecialchars($_POST['jenis_penyimpanan']);
+            // $sistem_operasi = htmlspecialchars($_POST['sistem_operasi']);
+            // $daya_tahan = htmlspecialchars($_POST['daya_tahan']);
+            // $ukuran_layar = htmlspecialchars($_POST['ukuran_layar']);
+            // $kategori = htmlspecialchars($_POST['kategori']);
         
-            $dataLemari = [
+            $dataLaptop = [
                 'id_alternatif' => $id_alternatif,
                 'nama_alternatif' => $nama_alternatif,
                 'gambar' => $namaFile,
-                'design' => $design
+                'ram' => $ram,
+                'prosesor' => $prosesor,
+                'harga' => $harga,
+                'ukuran_penyimpanan' => $ukuran_penyimpanan,
+                'jenis_penyimpanan' => $jenis_penyimpanan,
+                'sistem_operasi' => $sistem_operasi,
+                'daya_tahan' => $daya_tahan,
+                'ukuran_layar' => $ukuran_layar,
+                'kategori' => $kategori
             ];
             
             $dataKecAltKrit = [
-                'C1' => $harga,
-                'C2' => $kualitas,
-                'C3' => $volume,
-                'C4' => $kelengkapan,
-                'C5' => $merek
+                'C1' => $ram,
+                'C2' => $prosesor,
+                'C3' => $harga,
+                'C4' => $ukuran_penyimpanan,
+                'C5' => $jenis_penyimpanan,
+                'C6' => $sistem_operasi,
+                'C7' => $daya_tahan,
+                'C8' => $ukuran_layar
             ];
-            $Lemari->editDataLemari($dataLemari,$dataKecAltKrit);
+            $Laptop->editDataLaptop($dataLaptop,$dataKecAltKrit);
         } else {
             return $_SESSION['error'] = 'Tidak ada data yang dikirim!';
         }
     } else {
-        $harga = htmlspecialchars($_POST['harga']);
-        $kualitas = htmlspecialchars($_POST['kualitas']);
-        $volume = htmlspecialchars($_POST['volume']);
-        $kelengkapan = htmlspecialchars($_POST['kelengkapan']);
-        $merek = htmlspecialchars($_POST['merek']);
+        // $harga = htmlspecialchars($_POST['harga']);
+        // $kualitas = htmlspecialchars($_POST['kualitas']);
+        // $volume = htmlspecialchars($_POST['volume']);
+        // $kelengkapan = htmlspecialchars($_POST['kelengkapan']);
+        // $merek = htmlspecialchars($_POST['merek']);
     
-        $dataLemari = [
+        $dataLaptop = [
             'id_alternatif' => $id_alternatif,
             'nama_alternatif' => $nama_alternatif,
             'gambar' => $_POST['gambar_lama'],
-            'design' => $design
+            'ram' => $ram,
+            'prosesor' => $prosesor,
+            'harga' => $harga,
+            'ukuran_penyimpanan' => $ukuran_penyimpanan,
+            'jenis_penyimpanan' => $jenis_penyimpanan,
+            'sistem_operasi' => $sistem_operasi,
+            'daya_tahan' => $daya_tahan,
+            'ukuran_layar' => $ukuran_layar,
+            'kategori' => $kategori
         ];
         
         $dataKecAltKrit = [
-            'C1' => $harga,
-            'C2' => $kualitas,
-            'C3' => $volume,
-            'C4' => $kelengkapan,
-            'C5' => $merek
+            'C1' => $ram,
+            'C2' => $prosesor,
+            'C3' => $harga,
+            'C4' => $ukuran_penyimpanan,
+            'C5' => $jenis_penyimpanan,
+            'C6' => $sistem_operasi,
+            'C7' => $daya_tahan,
+            'C8' => $ukuran_layar
         ];
-        $Lemari->editDataLemari($dataLemari,$dataKecAltKrit);
+        $Laptop->editDataLaptop($dataLaptop,$dataKecAltKrit);
     }
 }
 
 if(isset($_POST['hapus'])){
     $id_alternatif = htmlspecialchars($_POST['id_alternatif']);
-    $Lemari->hapusDataLemari($id_alternatif);
+    $Laptop->hapusDataLemari($id_alternatif);
 }
 
 ?>
@@ -222,12 +273,15 @@ Swal.fire({
                                         <th>No</th>
                                         <th>Nama Lemari</th>
                                         <th>Gambar</th>
-                                        <th>Design</th>
+                                        <th>Kategori</th>
+                                        <th>RAM</th>
+                                        <th>Merk Procesor</th>
                                         <th>Harga</th>
-                                        <th>Kualitas</th>
-                                        <th>Volume</th>
-                                        <th>Kelengkapan</th>
-                                        <th>Merek</th>
+                                        <th>Ukuran Penyimpanan</th>
+                                        <th>Jenis Penyimpanan</th>
+                                        <th>Sistem Operasi</th>
+                                        <th>Daya Tahan Baterai</th>
+                                        <th>Ukuran Layar</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -242,12 +296,15 @@ Swal.fire({
                                                     src="../images/<?=$alternatif['gambar'];?>"
                                                     alt="Gambar <?=$alternatif['nama_alternatif'];?>">
                                             </a></td>
-                                        <td><?=$alternatif['design'];?></td>
+                                        <td><?=$alternatif['nama_kategori'];?></td>
                                         <td><?=$alternatif['nama_C1'];?></td>
                                         <td><?=$alternatif['nama_C2'];?></td>
                                         <td><?=$alternatif['nama_C3'];?></td>
                                         <td><?=$alternatif['nama_C4'];?></td>
                                         <td><?=$alternatif['nama_C5'];?></td>
+                                        <td><?=$alternatif['nama_C6'];?></td>
+                                        <td><?=$alternatif['nama_C7'];?></td>
+                                        <td><?=$alternatif['nama_C8'];?></td>
                                         <td>
                                             <button data-toggle="modal"
                                                 data-target="#edit<?=$alternatif['id_alternatif'];?>" type="button"
@@ -298,11 +355,38 @@ Swal.fire({
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <label for="design" class="form-label">Design <small class="text-danger">*</small></label>
-                            <select class="form-control" name="design" required aria-label="Default select example">
-                                <option value="">-- Pilih Design --</option>
-                                <option value="Motif">Motif</option>
-                                <option value="Warna">Warna</option>
+                            <label for="kategori" class="form-label">Kategori <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="kategori" required aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataKategori as $key => $kategori):?>
+                                <option value="<?=$kategori['id_kategori'];?>"><?=$kategori['nama_kategori'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="ram" class="form-label">RAM <small class="text-danger">*</small></label>
+                            <select class="form-control" name="ram" required aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubRAM as $key => $ram):?>
+                                <option value="<?=$ram['id_sub_kriteria'];?>">
+                                    <?=$ram['nama_sub_kriteria'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="prosesor" class="form-label">Merk Prosesor <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="prosesor" required aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubProsesor as $key => $prosesor):?>
+                                <option value="<?=$prosesor['id_sub_kriteria'];?>">
+                                    <?=$prosesor['nama_sub_kriteria'];?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                     </div>
@@ -310,7 +394,7 @@ Swal.fire({
                         <div class="">
                             <label for="harga" class="form-label">Harga <small class="text-danger">*</small></label>
                             <select class="form-control" name="harga" required aria-label="Default select example">
-                                <option value="">-- Pilih Harga --</option>
+                                <option value="">-- Pilih --</option>
                                 <?php foreach ($dataSubHarga as $key => $harga):?>
                                 <option value="<?=$harga['id_sub_kriteria'];?>">
                                     <?=$harga['nama_sub_kriteria'];?></option>
@@ -320,51 +404,69 @@ Swal.fire({
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <label for="kualitas" class="form-label">Kualitas <small
+                            <label for="ukuran_penyimpanan" class="form-label">Ukuran Penyimpanan <small
                                     class="text-danger">*</small></label>
-                            <select class="form-control" name="kualitas" required aria-label="Default select example">
-                                <option value="">-- Pilih Kualitas --</option>
-                                <?php foreach ($dataSubKualitas as $key => $kualitas):?>
-                                <option value="<?=$kualitas['id_sub_kriteria'];?>">
-                                    <?=$kualitas['nama_sub_kriteria'];?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="">
-                            <label for="volume" class="form-label">Volume <small class="text-danger">*</small></label>
-                            <select class="form-control" name="volume" required aria-label="Default select example">
-                                <option value="">-- Pilih Volume --</option>
-                                <?php foreach ($dataSubVolume as $key => $volume):?>
-                                <option value="<?=$volume['id_sub_kriteria'];?>">
-                                    <?=$volume['nama_sub_kriteria'];?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="">
-                            <label for="kelengkapan" class="form-label">Kelengkapan <small
-                                    class="text-danger">*</small></label>
-                            <select class="form-control" name="kelengkapan" required
+                            <select class="form-control" name="ukuran_penyimpanan" required
                                 aria-label="Default select example">
-                                <option value="">-- Pilih Kelengkapan --</option>
-                                <?php foreach ($dataSubKelengkapan as $key => $kelengkapan):?>
-                                <option value="<?=$kelengkapan['id_sub_kriteria'];?>">
-                                    <?=$kelengkapan['nama_sub_kriteria'];?></option>
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubUkuranPenyimpanan as $key => $ukuran_penyimpanan):?>
+                                <option value="<?=$ukuran_penyimpanan['id_sub_kriteria'];?>">
+                                    <?=$ukuran_penyimpanan['nama_sub_kriteria'];?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <label for="merek" class="form-label">Merek <small class="text-danger">*</small></label>
-                            <select class="form-control" name="merek" required aria-label="Default select example">
-                                <option value="">-- Pilih Merek --</option>
-                                <?php foreach ($dataSubMerek as $key => $merek):?>
-                                <option value="<?=$merek['id_sub_kriteria'];?>">
-                                    <?=$merek['nama_sub_kriteria'];?></option>
+                            <label for="jenis_penyimpanan" class="form-label">Jenis Penyimpanan <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="jenis_penyimpanan" required
+                                aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubJenisPenyimpanan as $key => $jenis_penyimpanan):?>
+                                <option value="<?=$jenis_penyimpanan['id_sub_kriteria'];?>">
+                                    <?=$jenis_penyimpanan['nama_sub_kriteria'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="sistem_operasi" class="form-label">Sistem Operasi <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="sistem_operasi" required
+                                aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubSistemOperasi as $key => $sistem_operasi):?>
+                                <option value="<?=$sistem_operasi['id_sub_kriteria'];?>">
+                                    <?=$sistem_operasi['nama_sub_kriteria'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="daya_tahan" class="form-label">Daya Tahan Baterai <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="daya_tahan" required aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubDayaTahanBaterai as $key => $daya_tahan):?>
+                                <option value="<?=$daya_tahan['id_sub_kriteria'];?>">
+                                    <?=$daya_tahan['nama_sub_kriteria'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="ukuran_layar" class="form-label">Ukuran Layar <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="ukuran_layar" required
+                                aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubUkuranLayar as $key => $ukuran_layar):?>
+                                <option value="<?=$ukuran_layar['id_sub_kriteria'];?>">
+                                    <?=$ukuran_layar['nama_sub_kriteria'];?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
@@ -414,12 +516,40 @@ Swal.fire({
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <label for="design" class="form-label">Design <small class="text-danger">*</small></label>
-                            <select class="form-control" name="design" required aria-label="Default select example">
-                                <option value="">-- Pilih Design --</option>
-                                <?php foreach ($dataDesign as $key => $design):?>
-                                <option <?=$design == $alternatif['design'] ? 'selected':'';?> value="<?=$design;?>">
-                                    <?=$design;?></option>
+                            <label for="kategori" class="form-label">Kategori <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="kategori" required aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataKategori as $key => $kategori):?>
+                                <option <?=$kategori['id_kategori'] == $alternatif['f_id_kategori'] ? 'selected':'';?>
+                                    value="<?=$kategori['id_kategori'];?>"><?=$kategori['nama_kategori'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="ram" class="form-label">RAM <small class="text-danger">*</small></label>
+                            <select class="form-control" name="ram" required aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubRAM as $key => $ram):?>
+                                <option <?= $ram['id_sub_kriteria'] == $alternatif['id_sub_C1'] ? 'selected':'';?>
+                                    value="<?=$ram['id_sub_kriteria'];?>">
+                                    <?=$ram['nama_sub_kriteria'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="prosesor" class="form-label">Merk Prosesor <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="prosesor" required aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubProsesor as $key => $prosesor):?>
+                                <option <?= $prosesor['id_sub_kriteria'] == $alternatif['id_sub_C2'] ? 'selected':'';?>
+                                    value="<?=$prosesor['id_sub_kriteria'];?>">
+                                    <?=$prosesor['nama_sub_kriteria'];?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
@@ -428,9 +558,9 @@ Swal.fire({
                         <div class="">
                             <label for="harga" class="form-label">Harga <small class="text-danger">*</small></label>
                             <select class="form-control" name="harga" required aria-label="Default select example">
-                                <option value="">-- Pilih Harga --</option>
+                                <option value="">-- Pilih --</option>
                                 <?php foreach ($dataSubHarga as $key => $harga):?>
-                                <option <?=$harga['id_sub_kriteria'] == $alternatif['id_sub_C1'] ? 'selected':'';?>
+                                <option <?= $harga['id_sub_kriteria'] == $alternatif['id_sub_C3'] ? 'selected':'';?>
                                     value="<?=$harga['id_sub_kriteria'];?>">
                                     <?=$harga['nama_sub_kriteria'];?></option>
                                 <?php endforeach;?>
@@ -439,56 +569,79 @@ Swal.fire({
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <label for="kualitas" class="form-label">Kualitas <small
+                            <label for="ukuran_penyimpanan" class="form-label">Ukuran Penyimpanan <small
                                     class="text-danger">*</small></label>
-                            <select class="form-control" name="kualitas" required aria-label="Default select example">
-                                <option value="">-- Pilih Kualitas --</option>
-                                <?php foreach ($dataSubKualitas as $key => $kualitas):?>
-                                <option <?=$kualitas['id_sub_kriteria'] == $alternatif['id_sub_C2'] ? 'selected':'';?>
-                                    value="<?=$kualitas['id_sub_kriteria'];?>">
-                                    <?=$kualitas['nama_sub_kriteria'];?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="">
-                            <label for="volume" class="form-label">Volume <small class="text-danger">*</small></label>
-                            <select class="form-control" name="volume" required aria-label="Default select example">
-                                <option value="">-- Pilih Volume --</option>
-                                <?php foreach ($dataSubVolume as $key => $volume):?>
-                                <option <?=$volume['id_sub_kriteria'] == $alternatif['id_sub_C3'] ? 'selected':'';?>
-                                    value="<?=$volume['id_sub_kriteria'];?>">
-                                    <?=$volume['nama_sub_kriteria'];?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="">
-                            <label for="kelengkapan" class="form-label">Kelengkapan <small
-                                    class="text-danger">*</small></label>
-                            <select class="form-control" name="kelengkapan" required
+                            <select class="form-control" name="ukuran_penyimpanan" required
                                 aria-label="Default select example">
-                                <option value="">-- Pilih Kelengkapan --</option>
-                                <?php foreach ($dataSubKelengkapan as $key => $kelengkapan):?>
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubUkuranPenyimpanan as $key => $ukuran_penyimpanan):?>
                                 <option
-                                    <?= $kelengkapan['id_sub_kriteria'] == $alternatif['id_sub_C4'] ? 'selected':'';?>
-                                    value="<?=$kelengkapan['id_sub_kriteria'];?>">
-                                    <?=$kelengkapan['nama_sub_kriteria'];?></option>
+                                    <?= $ukuran_penyimpanan['id_sub_kriteria'] == $alternatif['id_sub_C4'] ? 'selected':'';?>
+                                    value="<?=$ukuran_penyimpanan['id_sub_kriteria'];?>">
+                                    <?=$ukuran_penyimpanan['nama_sub_kriteria'];?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <label for="merek" class="form-label">Merek <small class="text-danger">*</small></label>
-                            <select class="form-control" name="merek" required aria-label="Default select example">
-                                <option value="">-- Pilih Merek --</option>
-                                <?php foreach ($dataSubMerek as $key => $merek):?>
-                                <option <?=$merek['id_sub_kriteria'] == $alternatif['id_sub_C5'] ? 'selected':'';?>
-                                    value="<?=$merek['id_sub_kriteria'];?>">
-                                    <?=$merek['nama_sub_kriteria'];?></option>
+                            <label for="jenis_penyimpanan" class="form-label">Jenis Penyimpanan <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="jenis_penyimpanan" required
+                                aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubJenisPenyimpanan as $key => $jenis_penyimpanan):?>
+                                <option
+                                    <?= $jenis_penyimpanan['id_sub_kriteria'] == $alternatif['id_sub_C5'] ? 'selected':'';?>
+                                    value="<?=$jenis_penyimpanan['id_sub_kriteria'];?>">
+                                    <?=$jenis_penyimpanan['nama_sub_kriteria'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="sistem_operasi" class="form-label">Sistem Operasi <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="sistem_operasi" required
+                                aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubSistemOperasi as $key => $sistem_operasi):?>
+                                <option
+                                    <?= $sistem_operasi['id_sub_kriteria'] == $alternatif['id_sub_C6'] ? 'selected':'';?>
+                                    value="<?=$sistem_operasi['id_sub_kriteria'];?>">
+                                    <?=$sistem_operasi['nama_sub_kriteria'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="daya_tahan" class="form-label">Daya Tahan Baterai <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="daya_tahan" required aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubDayaTahanBaterai as $key => $daya_tahan):?>
+                                <option
+                                    <?= $daya_tahan['id_sub_kriteria'] == $alternatif['id_sub_C7'] ? 'selected':'';?>
+                                    value="<?=$daya_tahan['id_sub_kriteria'];?>">
+                                    <?=$daya_tahan['nama_sub_kriteria'];?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="ukuran_layar" class="form-label">Ukuran Layar <small
+                                    class="text-danger">*</small></label>
+                            <select class="form-control" name="ukuran_layar" required
+                                aria-label="Default select example">
+                                <option value="">-- Pilih --</option>
+                                <?php foreach ($dataSubUkuranLayar as $key => $ukuran_layar):?>
+                                <option
+                                    <?= $ukuran_layar['id_sub_kriteria'] == $alternatif['id_sub_C8'] ? 'selected':'';?>
+                                    value="<?=$ukuran_layar['id_sub_kriteria'];?>">
+                                    <?=$ukuran_layar['nama_sub_kriteria'];?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>

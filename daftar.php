@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="col-lg-6 mb-5 mb-lg-0">
                         <h1 class="my-5 display-3 fw-bold ls-tight">
                             Sistem Pendukung Keputusan <br />
-                            <span style="color:#57C5B6">Pemilihan Lemari</span>
+                            <span style="color:#5B9A8B">Pemilihan Laptop</span>
                         </h1>
                         <h4 style="color: hsl(217, 10%, 50.8%)">
                             Sistem pendukung keputusan menggunakan metode <i style="color:#116A7B">Multi-Attribute

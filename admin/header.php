@@ -41,7 +41,7 @@ else if($_SESSION['level'] != 0){
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
                 <div class="sidebar-brand-icon rotate-n-15" style="display: none">
@@ -66,10 +66,10 @@ else if($_SESSION['level'] != 0){
                     <span>Dashboard</span></a>
             </li>
             <!-- Nav Item - Charts -->
-            <li class="nav-item <?= $_SESSION['menu'] == 'lemari' ? 'active':'';?>">
-                <a class="nav-link" href="./data_lemari.php">
+            <li class="nav-item <?= $_SESSION['menu'] == 'laptop' ? 'active':'';?>">
+                <a class="nav-link" href="./data_laptop.php">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Data lemari</span></a>
+                    <span>Data laptop</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -81,7 +81,7 @@ else if($_SESSION['level'] != 0){
             <li class="nav-item <?= $_SESSION['menu'] == 'sub-kriteria' ? 'active':'';?>">
                 <a class="nav-link" href="./sub_kriteria.php">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Sub Kriteria</span></a>
+                    <span>Sub kriteria</span></a>
             </li>
             <li class="nav-item <?= $_SESSION['menu'] == 'users' ? 'active':'';?>">
                 <a class="nav-link" href="./user.php">

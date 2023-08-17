@@ -50,12 +50,15 @@ if(isset($_POST['hapus'])){
                                         <th>No</th>
                                         <th>Nama Lemari</th>
                                         <th>Gambar</th>
-                                        <th>Design</th>
+                                        <th>Kategori</th>
+                                        <th>RAM</th>
+                                        <th>Merk Procesor</th>
                                         <th>Harga</th>
-                                        <th>Kualitas</th>
-                                        <th>Volume</th>
-                                        <th>Kelengkapan</th>
-                                        <th>Merek</th>
+                                        <th>Ukuran Penyimpanan</th>
+                                        <th>Jenis Penyimpanan</th>
+                                        <th>Sistem Operasi</th>
+                                        <th>Daya Tahan Baterai</th>
+                                        <th>Ukuran Layar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,12 +72,15 @@ if(isset($_POST['hapus'])){
                                                     src="../images/<?=$alternatif['gambar'];?>"
                                                     alt="Gambar <?=$alternatif['nama_alternatif'];?>">
                                             </a></td>
-                                        <td><?=$alternatif['design'];?></td>
+                                        <td><?=$alternatif['nama_kategori'];?></td>
                                         <td><?=$alternatif['nama_C1'];?></td>
                                         <td><?=$alternatif['nama_C2'];?></td>
                                         <td><?=$alternatif['nama_C3'];?></td>
                                         <td><?=$alternatif['nama_C4'];?></td>
                                         <td><?=$alternatif['nama_C5'];?></td>
+                                        <td><?=$alternatif['nama_C6'];?></td>
+                                        <td><?=$alternatif['nama_C7'];?></td>
+                                        <td><?=$alternatif['nama_C8'];?></td>
                                     </tr>
                                     <?php endforeach;?>
                                 </tbody>

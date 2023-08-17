@@ -15,6 +15,15 @@ if(isset($_POST['tambah'])){
     ];
     $Kriteria->tambahKriteria($dataKriteria);
 }
+if(isset($_POST['edit'])){
+    $id_kriteria = $_POST['id_kriteria'];
+    $nama_kriteria = $_POST['nama_kriteria'];
+    $dataKriteria = [
+       "id_kriteria" => $id_kriteria,
+       "nama_kriteria" => $nama_kriteria
+    ];
+    $Kriteria->editKriteria($dataKriteria);
+}
 
 $data_Kriteria = $Kriteria->getKriteria();
 ?>
@@ -54,7 +63,7 @@ Swal.fire({
     <!-- Area Chart -->
     <!-- Button trigger modal -->
     <div class="col-lg-12">
-        <?php if(mysqli_num_rows($data_Kriteria) < 5): ?>
+        <?php if(mysqli_num_rows($data_Kriteria) < 8): ?>
         <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambah">
             + Tambah data
         </button>
@@ -77,6 +86,7 @@ Swal.fire({
                                         <th>No</th>
                                         <th>Kode</th>
                                         <th>Nama</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,6 +95,11 @@ Swal.fire({
                                         <th scope="row"><?=$key+1;?></th>
                                         <th scope="row"><?=$kriteria['id_kriteria'];?></th>
                                         <td><?=$kriteria['nama_kriteria'];?></td>
+                                        <td>
+                                            <button data-toggle="modal"
+                                                data-target="#edit<?=$kriteria['id_kriteria'];?>" type="button"
+                                                class="btn btn-sm btn-primary">Edit</button>
+                                        </td>
                                     </tr>
                                     <?php endforeach;?>
                                 </tbody>
@@ -138,4 +153,49 @@ Swal.fire({
         </div>
     </div>
 </div>
+<?php foreach ($data_Kriteria as $kriteria):?>
+<div class="modal fade" id="edit<?=$kriteria['id_kriteria'];?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <small class="text-danger">(*) Wajib</small>
+                        <div class="mt-2">
+                            <label for="id_kriteria" class="form-label">Kode Kriteria <small
+                                    class="text-danger">*</small></label>
+                            <input class="form-control" required name="id_kriteria" type="text" readonly
+                                placeholder="Kode Kriteria" value="<?=$kriteria['id_kriteria'];?>"
+                                aria-label="default input example" maxlength="2">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <label for="nama_kriteria" class="form-label">Nama Kriteria <small
+                                    class="text-danger">*</small></label>
+                            <input class="form-control" required name="nama_kriteria" type="text"
+                                placeholder="Nama Kriteria" value="<?=$kriteria['nama_kriteria'];?>"
+                                aria-label="default input example">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <button type="submit" name="edit" class="btn btn-outline-primary">
+                            Simpan
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endforeach;?>
 <?php require_once './footer.php';?>

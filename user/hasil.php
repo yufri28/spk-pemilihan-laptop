@@ -45,7 +45,7 @@ Swal.fire({
                                         <th>No</th>
                                         <th>Nama Lemari</th>
                                         <th>Gambar</th>
-                                        <th>Design</th>
+                                        <th>Kategori</th>
                                         <th>Harga</th>
                                         <th>Kualitas</th>
                                         <th>Volume</th>
@@ -65,7 +65,7 @@ Swal.fire({
                                                     src="../images/<?=$preferensi['gambar'];?>"
                                                     alt="Gambar <?=$preferensi['nama_alternatif'];?>">
                                             </a></td>
-                                        <td><?=$preferensi['design'];?></td>
+                                        <td><?=$preferensi['nama_kategori'];?></td>
                                         <td><?=$preferensi['nama_C1'];?></td>
                                         <td><?=$preferensi['nama_C2'];?></td>
                                         <td><?=$preferensi['nama_C3'];?></td>

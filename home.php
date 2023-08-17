@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>SPK Pemilihan Lemari</title>
+    <title>SPK Pemilihan Laptop</title>
     <style>
     #mapid {
         height: 100vh;
@@ -20,7 +20,7 @@
 <body>
     <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
         <div class="container-fluid p-4">
-            <a class="navbar-brand ms-4" style="font-family: 'Roboto', sans-serif;" href="#">SPK PEMILIHAN LEMARI</a>
+            <a class="navbar-brand ms-4" style="font-family: 'Roboto', sans-serif;" href="#">SPK PEMILIHAN LAPTOP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
                     <div class="col-lg-5 mb-1 mb-lg-0">
                         <h2 class="my-3 mt-4 display-5 fw-bolder ls-tight">
                             Sistem Pendukung Keputusan <br />
-                            <span style="color:#57C5B6">Pemilihan Lemari</span>
+                            <span style="color:#5B9A8B">Pemilihan Laptop</span>
                         </h2>
                         <h5 style="color: hsl(217, 10%, 50.8%)">
                             Sistem pendukung keputusan menggunakan metode <i style="color:#116A7B">Multi-Attribute
@@ -55,25 +55,19 @@
                         <div class="card">
                             <div class="card-body shadow-lg d-flex justify-content-center py-5 px-md-5">
                                 <ul>
-                                    <li>
-                                        Sistem pendukung keputusan dinyatakan pertama kali oleh Michael S.
-                                        Scott Morton pada tahun 1970 dengan istilah lain “Management
-                                        Decision System” SPK dibuat untuk mendukung tahap pengambilan
-                                        keputusan diawali dengan mengidentifikasi masalah, memilih data
-                                        relevan, menentukan pendekatan yang digunakan dalam proses
-                                        pengambilan keputusan, sampai mengevaluasi pemilihan alternatif.
-                                    </li>
-                                    <li>
-                                        Toko Virgo Mebel adalah salah satu dari sekian banyak
-                                        toko/perusahaan yang bergerak dalam bidang mebel, dimana toko ini
-                                        menjual barang berupa lemari, kursi, meja dll.
-                                    </li>
-                                    <li>
-                                        Toko ini memasarkan produk mulai dari kualitas standar sampai
-                                        kualitas tinggi.Toko Virgo Mebel berdiri pada tanggal 6 Februari
-                                        1995 dan berlokasi di Jl.Ketumbar, Kelurahan Kefamenanu Tengah,
-                                        Kecamatan Kota Kefamenanu, Timor Tengah Utara Nusa Tenggara Timur.
-                                    </li>
+                                    <p>
+                                        Sistem pendukung keputusan (SPK) adalah sistem informasi terkomputerisasi yang
+                                        menghasilkan
+                                        berbagai
+                                        alternatif keputusan untuk membantu manajemen dalam mengatasi berbagai masalah
+                                        yang terstruktur
+                                        maupun tidak terstruktur dengan menggunakan data dan model (Pratiwi, 2016). SPK
+                                        adalah sistem
+                                        yang mampu memberikan keterampilan pemecahan masalah dan keterampilan komunikasi
+                                        untuk masalah
+                                        dengan kondisi semi terstruktur dan tidak terstruktur (Limbong et al, 2020).
+                                    </p>
+
                                 </ul>
                             </div>
                         </div>
