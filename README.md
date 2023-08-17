@@ -23,3 +23,10 @@
 ### Akun Admin
 Username : `admin`
 Password : `admin`
+
+### Akun Pengguna Biasa
+Silahkan buat akun terlebih dahulu
+- Klik tombol Login
+- Jika sudah punya akun silahkan masukan Username dan Password untuk login
+- Jika belum punya akun, silahkan klik tombol Daftar untuk membuat akun
+- Setelah akun berhasil dibuat, silahkan login dengan Username dan Password yang telah anda buat
