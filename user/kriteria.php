@@ -351,7 +351,7 @@ Swal.fire({
                                 <tr>
                                     <th scope="row"><?=$key+1;?></th>
                                     <td><?=$kriteria['nama_kriteria'];?></td>
-                                    <td><?=$kriteria['C'.$key+1];?></td>
+                                    <td><?=$kriteria['C'.($key+1)];?></td>
                                 </tr>
                                 <?php endforeach;?>
                             </tbody>
