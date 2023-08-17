@@ -38,12 +38,12 @@ Swal.fire({
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered nowrap" id="dataLemari" style="width:100%"
+                            <table class="table table-bordered nowrap" id="dataLaptop" style="width:100%"
                                 cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Lemari</th>
+                                        <th>Nama Laptop</th>
                                         <th>Gambar</th>
                                         <th>Kategori</th>
                                         <th>Harga</th>

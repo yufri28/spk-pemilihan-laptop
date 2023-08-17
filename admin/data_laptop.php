@@ -15,7 +15,7 @@ $dataSubDayaTahanBaterai = $Laptop->getSubDayaTahanBaterai();
 $dataSubUkuranLayar = $Laptop->getSubUkuranLayar();
 $dataKategori = $Laptop->getKategori();
 
-// tambah alternatif/lemari
+// tambah alternatif/laptop
 if(isset($_POST['tambah'])){
     $nama_alternatif = htmlspecialchars($_POST['nama_alternatif']);
     
@@ -88,7 +88,7 @@ if(isset($_POST['tambah'])){
     }    
 }
 
-// edit alternatif/lemari
+// edit alternatif/Laptop
 if(isset($_POST['edit'])){
     $id_alternatif = htmlspecialchars($_POST['id_alternatif']);
     $nama_alternatif = htmlspecialchars($_POST['nama_alternatif']);
@@ -212,7 +212,7 @@ if(isset($_POST['edit'])){
 
 if(isset($_POST['hapus'])){
     $id_alternatif = htmlspecialchars($_POST['id_alternatif']);
-    $Laptop->hapusDataLemari($id_alternatif);
+    $Laptop->hapusDataLaptop($id_alternatif);
 }
 
 ?>
@@ -262,16 +262,16 @@ Swal.fire({
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Daftar Lemari</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Daftar Laptop</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered nowrap" id="dataLemari" style="width:100%"
+                            <table class="table table-bordered nowrap" id="dataLaptop" style="width:100%"
                                 cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Lemari</th>
+                                        <th>Nama Laptop</th>
                                         <th>Gambar</th>
                                         <th>Kategori</th>
                                         <th>RAM</th>

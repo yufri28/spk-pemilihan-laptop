@@ -76,7 +76,7 @@ $(document).ready(function() {
         "scrollX": true,
         "scrollY": true,
     });
-    var table = $('#dataLemari').DataTable({
+    var table = $('#dataLaptop').DataTable({
         responsive: true,
         "lengthMenu": [
             [5, 10, 15, 20, 100, -1],

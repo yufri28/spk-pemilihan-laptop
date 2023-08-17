@@ -39,16 +39,16 @@ if(isset($_POST['hapus'])){
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Daftar Lemari</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Daftar Laptop</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered nowrap" id="dataLemari" style="width:100%"
+                            <table class="table table-bordered nowrap" id="dataLaptop" style="width:100%"
                                 cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Lemari</th>
+                                        <th>Nama Laptop</th>
                                         <th>Gambar</th>
                                         <th>Kategori</th>
                                         <th>RAM</th>

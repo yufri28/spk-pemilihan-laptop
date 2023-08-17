@@ -85,7 +85,7 @@ $dataTampung = $koneksi->query("SELECT * FROM tabel_tampung WHERE f_id_user='$id
 <script>
 Swal.fire({
     title: 'Pesan',
-    text: 'Pililah kriteria sesuai prioritas yang Anda inginkan pada lemari yang dicari, seperti Harga, Kualitas, Volume, Kelengkapan, dan Merek. Misalnya Anda ingin mencari lemari dengan meprioritaskan Kelengkapan pada prioritas 1, Harga pada prioritas 2, Kualitas pada prioritas 3, Volume pada prioritas 4 dan Merek pada prioritas 5. Dari pilihan prioritas tersebut, sistem akan merekomendasikan lemari dengan kriteria lemari dengan kelengkapan paling banyak kemudian diikuti dengan kriteria lainnya.',
+    text: 'Pililah kriteria sesuai prioritas yang Anda inginkan pada laptop yang dicari, seperti RAM, Merk Prosesor, Harga, Ukuran Penyimpanan, Jenis Penyimpanan, Sistem Operasi, Daya Tahan Baterai dan Ukuran Layar. Misalnya Anda ingin mencari laptop dengan meprioritaskan RAM pada prioritas 1, Harga pada prioritas 2, Merk Prosesor pada prioritas 3, Ukuran Penyimpanan pada prioritas 4, Jenis Penyimpanan pada prioritas 5, Sistem Operasi pada prioritas 6, Daya Tahan Baterai pada prioritas 7 dan Ukuran Layar pada prioritas 8. Dari pilihan prioritas tersebut, sistem akan merekomendasikan laptop dengan kriteria laptop dengan ukuran RAM yang paling besar kemudian diikuti dengan kriteria lainnya.',
     icon: 'warning',
     confirmButtonText: 'Paham'
 });
