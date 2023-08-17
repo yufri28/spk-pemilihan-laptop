@@ -13,10 +13,10 @@
 3. Setup Database
   - Buka phpmyadmin
   - Buat tabel baru dengan nama `spk_pem_laptop`
-  - Klik menu export
+  - Klik menu import
   - Lalu Pilih Database pada folder project yang sudah didownload (file database ada pada folder database)
-  - Klik Export/Ekspor
-  - Tunggu sampai proses ekspor/export selesai dan pastikan semua tabel berhasil dieksport tanpa ada error
+  - Klik import
+  - Tunggu sampai proses import selesai dan pastikan semua tabel berhasil diimport tanpa ada error
 4. Buka Browser
   - Ketik URL `http://localhost/spk-pemilihan-laptop/` untuk masuk ke halaman utama
 
