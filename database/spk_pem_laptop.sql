@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Agu 2023 pada 08.59
+-- Waktu pembuatan: 28 Sep 2023 pada 10.01
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -74,7 +74,8 @@ CREATE TABLE `bobot_kriteria` (
 --
 
 INSERT INTO `bobot_kriteria` (`id_bobot`, `C1`, `C2`, `C3`, `C4`, `C5`, `C6`, `C7`, `C8`, `f_id_user`) VALUES
-(8, 0.25, 0.2, 0.15, 0.15, 0.1, 0.05, 0.05, 0.05, 7);
+(8, 0.2, 0.15, 0.12, 0.14, 0.12, 0.09, 0.09, 0.09, 7),
+(9, 0.25, 0.15, 0.1, 0.2, 0.05, 0.05, 0.15, 0.05, 11);
 
 -- --------------------------------------------------------
 
@@ -232,7 +233,7 @@ INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`) VALUES
 CREATE TABLE `sub_kriteria` (
   `id_sub_kriteria` int(11) NOT NULL,
   `nama_sub_kriteria` varchar(150) NOT NULL,
-  `bobot_sub_kriteria` int(11) NOT NULL,
+  `bobot_sub_kriteria` float NOT NULL,
   `f_id_kriteria` char(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -241,7 +242,7 @@ CREATE TABLE `sub_kriteria` (
 --
 
 INSERT INTO `sub_kriteria` (`id_sub_kriteria`, `nama_sub_kriteria`, `bobot_sub_kriteria`, `f_id_kriteria`) VALUES
-(37, '4GB', 1, 'C1'),
+(37, '4GB', 1.01, 'C1'),
 (38, '8GB', 2, 'C1'),
 (39, '16GB', 3, 'C1'),
 (40, '> 16GB', 4, 'C1'),
@@ -265,11 +266,11 @@ INSERT INTO `sub_kriteria` (`id_sub_kriteria`, `nama_sub_kriteria`, `bobot_sub_k
 (58, '≤ 5 jam', 1, 'C7'),
 (59, '5 jam < baterai ≤ 7 jam', 2, 'C7'),
 (60, '7 jam < baterai ≤ 9 jam', 3, 'C7'),
-(61, '>10 jam', 4, 'C7'),
-(62, '≤11 inci', 1, 'C8'),
-(63, '11 inci < layar ≤ 13 inci', 2, 'C8'),
-(64, '13 inci < layar ≤ 15 inci', 3, 'C8'),
-(65, '≥ 15 inci', 4, 'C8');
+(61, '> 6 jam', 0.05, 'C7'),
+(62, '≤ 14 inci', 0.01, 'C8'),
+(63, '14 inci < layar ≤ 15 inci', 0.01, 'C8'),
+(64, '15 inci < layar ≤ 17 inci', 0.03, 'C8'),
+(65, '> 17 inci', 0.04, 'C8');
 
 -- --------------------------------------------------------
 
@@ -295,7 +296,8 @@ CREATE TABLE `tabel_tampung` (
 --
 
 INSERT INTO `tabel_tampung` (`id`, `prio1`, `prio2`, `prio3`, `prio4`, `prio5`, `prio6`, `prio7`, `prio8`, `f_id_user`) VALUES
-(27, 'RAM', 'Merk Processor', 'Ukuran Penyimpanan', 'Harga', 'Jenis Penyimpanan', 'Sistem Operasi', 'Daya Tahan Baterai', 'Ukuran Layar', 7);
+(27, 'RAM', 'Merk Processor', 'Ukuran Penyimpanan', 'Harga', 'Jenis Penyimpanan', 'Sistem Operasi', 'Daya Tahan Baterai', 'Ukuran Layar', 7),
+(28, 'RAM', 'Ukuran Penyimpanan', 'Merk Processor', 'Daya Tahan Baterai', 'Harga', 'Jenis Penyimpanan', 'Sistem Operasi', 'Ukuran Layar', 11);
 
 -- --------------------------------------------------------
 
@@ -317,7 +319,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
 (2, 'admin', '$2y$10$vKlD7o2zW7D0NyeRZ9gIOuq/H5cD/hjZgmjZ20.8.yRE9FHaJKqkq', 0),
 (7, 'yupi', '$2y$10$ZxU.kfq5Z4OIgfdL4MF8pOvO2Xwn.tvyo.2Yk.Ngmz8AXlYKsZONG', 1),
-(10, 'pengguna', '$2y$10$tm/hKTjwdsY2jAvwJUxPpOsioCGbcpm0FiLsZ7sWtBa2z6.VxEYIW', 1);
+(10, 'pengguna', '$2y$10$tm/hKTjwdsY2jAvwJUxPpOsioCGbcpm0FiLsZ7sWtBa2z6.VxEYIW', 1),
+(11, 'akun', '$2y$10$1AO.NqOqhihWy4PCLzsgKuVHiKNHzotDHhZbwGRz3YDydfdQcz3U6', 1);
 
 --
 -- Indexes for dumped tables
@@ -394,7 +397,7 @@ ALTER TABLE `alternatif`
 -- AUTO_INCREMENT untuk tabel `bobot_kriteria`
 --
 ALTER TABLE `bobot_kriteria`
-  MODIFY `id_bobot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_bobot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori_alt`
@@ -412,19 +415,19 @@ ALTER TABLE `kec_alt_kriteria`
 -- AUTO_INCREMENT untuk tabel `sub_kriteria`
 --
 ALTER TABLE `sub_kriteria`
-  MODIFY `id_sub_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_sub_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT untuk tabel `tabel_tampung`
 --
 ALTER TABLE `tabel_tampung`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
