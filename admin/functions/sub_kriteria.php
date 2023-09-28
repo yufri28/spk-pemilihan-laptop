@@ -24,7 +24,7 @@ class Sub_Kriteria{
             return $_SESSION['error'] = 'Data sudah ada!';
         } else {
             $stmtInsertSub = $this->db->prepare("INSERT INTO sub_kriteria(nama_sub_kriteria,bobot_sub_kriteria,f_id_kriteria) VALUES (?,?,?)");
-            $stmtInsertSub->bind_param("sis", $dataSubKiteria['nama_sub_kriteria'], $dataSubKiteria['bobot_sub_kriteria'], $dataSubKiteria['id_kriteria']);
+            $stmtInsertSub->bind_param("sds", $dataSubKiteria['nama_sub_kriteria'], $dataSubKiteria['bobot_sub_kriteria'], $dataSubKiteria['id_kriteria']);
             $stmtInsertSub->execute();
             if ($stmtInsertSub->affected_rows > 0) {
                 return $_SESSION['success'] = 'Data berhasil disimpan!';
@@ -37,7 +37,7 @@ class Sub_Kriteria{
     public function editSubKriteria($dataSubKiteria)
     {
         $stmtUpdateSub = $this->db->prepare("UPDATE sub_kriteria  SET nama_sub_kriteria=?,bobot_sub_kriteria=?,f_id_kriteria=? WHERE id_sub_kriteria=?");
-        $stmtUpdateSub->bind_param("sisi", $dataSubKiteria['nama_sub_kriteria'],$dataSubKiteria['bobot_sub_kriteria'],$dataSubKiteria['id_kriteria'],$dataSubKiteria['id_sub_kriteria']);
+        $stmtUpdateSub->bind_param("sdsi", $dataSubKiteria['nama_sub_kriteria'],$dataSubKiteria['bobot_sub_kriteria'],$dataSubKiteria['id_kriteria'],$dataSubKiteria['id_sub_kriteria']);
         $stmtUpdateSub->execute();
         if ($stmtUpdateSub) {
             return $_SESSION['success'] = 'Data berhasil diedit!';

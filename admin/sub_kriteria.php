@@ -22,6 +22,7 @@ if(isset($_POST['edit'])){
     $id_sub_kriteria = $_POST['id_sub_kriteria'];
     $nama_sub_kriteria = $_POST['nama_sub_kriteria'];
     $bobot_sub_kriteria = $_POST['bobot_sub_kriteria'];
+
     $dataSubKriteria = [
        "id_kriteria" => $id_kriteria,
        "id_sub_kriteria" => $id_sub_kriteria,
@@ -136,7 +137,7 @@ Swal.fire({
                         <div class="">
                             <label for="bobot_sub_kriteria" class="form-label">Bobot Sub Kriteria <small
                                     class="text-danger">*</small></label>
-                            <input class="form-control" required name="bobot_sub_kriteria" type="number"
+                            <input class="form-control" required name="bobot_sub_kriteria" type="number" step="0.01"
                                 placeholder="Bobot Sub Kriteria" aria-label="default input example">
                         </div>
                     </div>
@@ -196,7 +197,7 @@ Swal.fire({
                             <label for="bobot_sub_kriteria" class="form-label">Bobot Sub Kriteria <small
                                     class="text-danger">*</small></label>
                             <input class="form-control" value="<?=$sub_kriteria['bobot_sub_kriteria'];?>" required
-                                name="bobot_sub_kriteria" type="number" placeholder="Bobot Sub Kriteria"
+                                name="bobot_sub_kriteria" type="number" step="0.01" placeholder="Bobot Sub Kriteria"
                                 aria-label="default input example">
                         </div>
                     </div>

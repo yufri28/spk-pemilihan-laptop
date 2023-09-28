@@ -20,14 +20,14 @@ if(isset($_POST['simpan'])){
         $prioritas1,$prioritas2,$prioritas3,$prioritas4,$prioritas5,$prioritas6,$prioritas7,$prioritas8
     ];
     $dataBobotKriteria = [
-        $prioritas1 => 0.25,
-        $prioritas2 => 0.2,
-        $prioritas3 => 0.15,
-        $prioritas4 => 0.15,
-        $prioritas5 => 0.1,
-        $prioritas6 => 0.05,
-        $prioritas7 => 0.05,
-        $prioritas8 => 0.05,
+        $prioritas1 => 0.20,
+        $prioritas2 => 0.15,
+        $prioritas3 => 0.14,
+        $prioritas4 => 0.12,
+        $prioritas5 => 0.12,
+        $prioritas6 => 0.09,
+        $prioritas7 => 0.09,
+        $prioritas8 => 0.09,
     ];
     
     $Kriteria->tambahTampung($dataTampung, $id_user);
@@ -49,14 +49,14 @@ if(isset($_POST['edit'])){
         $prioritas1,$prioritas2,$prioritas3,$prioritas4,$prioritas5,$prioritas6,$prioritas7,$prioritas8
     ];
     $dataBobotKriteria = [
-        $prioritas1 => 0.25,
-        $prioritas2 => 0.2,
-        $prioritas3 => 0.15,
-        $prioritas4 => 0.15,
-        $prioritas5 => 0.1,
-        $prioritas6 => 0.05,
-        $prioritas7 => 0.05,
-        $prioritas8 => 0.05,
+        $prioritas1 => 0.20,
+        $prioritas2 => 0.15,
+        $prioritas3 => 0.14,
+        $prioritas4 => 0.12,
+        $prioritas5 => 0.12,
+        $prioritas6 => 0.09,
+        $prioritas7 => 0.09,
+        $prioritas8 => 0.09,
     ];
     $tambahBobotKriteria = $Kriteria->editBobotKriteria($id_bobot,$dataBobotKriteria);
     $Kriteria->editTampung($id,$dataTampung);
