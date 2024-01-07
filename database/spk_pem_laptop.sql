@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 6.0.0-dev+20231112.f9ab9d15ac
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Sep 2023 pada 10.01
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.1.6
+-- Generation Time: Jan 07, 2024 at 06:48 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `alternatif`
+-- Table structure for table `alternatif`
 --
 
 CREATE TABLE `alternatif` (
@@ -35,7 +35,7 @@ CREATE TABLE `alternatif` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `alternatif`
+-- Dumping data for table `alternatif`
 --
 
 INSERT INTO `alternatif` (`id_alternatif`, `nama_alternatif`, `gambar`, `f_id_kategori`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `alternatif` (`id_alternatif`, `nama_alternatif`, `gambar`, `f_id_ka
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bobot_kriteria`
+-- Table structure for table `bobot_kriteria`
 --
 
 CREATE TABLE `bobot_kriteria` (
@@ -70,7 +70,7 @@ CREATE TABLE `bobot_kriteria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `bobot_kriteria`
+-- Dumping data for table `bobot_kriteria`
 --
 
 INSERT INTO `bobot_kriteria` (`id_bobot`, `C1`, `C2`, `C3`, `C4`, `C5`, `C6`, `C7`, `C8`, `f_id_user`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `bobot_kriteria` (`id_bobot`, `C1`, `C2`, `C3`, `C4`, `C5`, `C6`, `C
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori_alt`
+-- Table structure for table `kategori_alt`
 --
 
 CREATE TABLE `kategori_alt` (
@@ -89,7 +89,7 @@ CREATE TABLE `kategori_alt` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kategori_alt`
+-- Dumping data for table `kategori_alt`
 --
 
 INSERT INTO `kategori_alt` (`id_kategori`, `nama_kategori`) VALUES
@@ -103,7 +103,7 @@ INSERT INTO `kategori_alt` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kec_alt_kriteria`
+-- Table structure for table `kec_alt_kriteria`
 --
 
 CREATE TABLE `kec_alt_kriteria` (
@@ -114,7 +114,7 @@ CREATE TABLE `kec_alt_kriteria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kec_alt_kriteria`
+-- Dumping data for table `kec_alt_kriteria`
 --
 
 INSERT INTO `kec_alt_kriteria` (`id_alt_kriteria`, `f_id_alternatif`, `f_id_kriteria`, `f_id_sub_kriteria`) VALUES
@@ -202,7 +202,7 @@ INSERT INTO `kec_alt_kriteria` (`id_alt_kriteria`, `f_id_alternatif`, `f_id_krit
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kriteria`
+-- Table structure for table `kriteria`
 --
 
 CREATE TABLE `kriteria` (
@@ -211,7 +211,7 @@ CREATE TABLE `kriteria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kriteria`
+-- Dumping data for table `kriteria`
 --
 
 INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`) VALUES
@@ -227,7 +227,7 @@ INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sub_kriteria`
+-- Table structure for table `sub_kriteria`
 --
 
 CREATE TABLE `sub_kriteria` (
@@ -238,7 +238,7 @@ CREATE TABLE `sub_kriteria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `sub_kriteria`
+-- Dumping data for table `sub_kriteria`
 --
 
 INSERT INTO `sub_kriteria` (`id_sub_kriteria`, `nama_sub_kriteria`, `bobot_sub_kriteria`, `f_id_kriteria`) VALUES
@@ -275,7 +275,7 @@ INSERT INTO `sub_kriteria` (`id_sub_kriteria`, `nama_sub_kriteria`, `bobot_sub_k
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tabel_tampung`
+-- Table structure for table `tabel_tampung`
 --
 
 CREATE TABLE `tabel_tampung` (
@@ -292,7 +292,7 @@ CREATE TABLE `tabel_tampung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tabel_tampung`
+-- Dumping data for table `tabel_tampung`
 --
 
 INSERT INTO `tabel_tampung` (`id`, `prio1`, `prio2`, `prio3`, `prio4`, `prio5`, `prio6`, `prio7`, `prio8`, `f_id_user`) VALUES
@@ -302,7 +302,7 @@ INSERT INTO `tabel_tampung` (`id`, `prio1`, `prio2`, `prio3`, `prio4`, `prio5`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -313,7 +313,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
@@ -327,14 +327,14 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
 --
 
 --
--- Indeks untuk tabel `alternatif`
+-- Indexes for table `alternatif`
 --
 ALTER TABLE `alternatif`
   ADD PRIMARY KEY (`id_alternatif`),
   ADD KEY `f_id_kategori` (`f_id_kategori`);
 
 --
--- Indeks untuk tabel `bobot_kriteria`
+-- Indexes for table `bobot_kriteria`
 --
 ALTER TABLE `bobot_kriteria`
   ADD PRIMARY KEY (`id_bobot`),
@@ -342,13 +342,13 @@ ALTER TABLE `bobot_kriteria`
   ADD KEY `id_user` (`f_id_user`);
 
 --
--- Indeks untuk tabel `kategori_alt`
+-- Indexes for table `kategori_alt`
 --
 ALTER TABLE `kategori_alt`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `kec_alt_kriteria`
+-- Indexes for table `kec_alt_kriteria`
 --
 ALTER TABLE `kec_alt_kriteria`
   ADD PRIMARY KEY (`id_alt_kriteria`),
@@ -357,20 +357,20 @@ ALTER TABLE `kec_alt_kriteria`
   ADD KEY `f_id_sub_kriteria` (`f_id_sub_kriteria`);
 
 --
--- Indeks untuk tabel `kriteria`
+-- Indexes for table `kriteria`
 --
 ALTER TABLE `kriteria`
   ADD PRIMARY KEY (`id_kriteria`);
 
 --
--- Indeks untuk tabel `sub_kriteria`
+-- Indexes for table `sub_kriteria`
 --
 ALTER TABLE `sub_kriteria`
   ADD PRIMARY KEY (`id_sub_kriteria`),
   ADD KEY `f_id_kriteria` (`f_id_kriteria`);
 
 --
--- Indeks untuk tabel `tabel_tampung`
+-- Indexes for table `tabel_tampung`
 --
 ALTER TABLE `tabel_tampung`
   ADD PRIMARY KEY (`id`),
@@ -378,75 +378,75 @@ ALTER TABLE `tabel_tampung`
   ADD KEY `f_id_user` (`f_id_user`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `alternatif`
+-- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
   MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT untuk tabel `bobot_kriteria`
+-- AUTO_INCREMENT for table `bobot_kriteria`
 --
 ALTER TABLE `bobot_kriteria`
   MODIFY `id_bobot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori_alt`
+-- AUTO_INCREMENT for table `kategori_alt`
 --
 ALTER TABLE `kategori_alt`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `kec_alt_kriteria`
+-- AUTO_INCREMENT for table `kec_alt_kriteria`
 --
 ALTER TABLE `kec_alt_kriteria`
   MODIFY `id_alt_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
--- AUTO_INCREMENT untuk tabel `sub_kriteria`
+-- AUTO_INCREMENT for table `sub_kriteria`
 --
 ALTER TABLE `sub_kriteria`
   MODIFY `id_sub_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
--- AUTO_INCREMENT untuk tabel `tabel_tampung`
+-- AUTO_INCREMENT for table `tabel_tampung`
 --
 ALTER TABLE `tabel_tampung`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `alternatif`
+-- Constraints for table `alternatif`
 --
 ALTER TABLE `alternatif`
   ADD CONSTRAINT `alternatif_ibfk_1` FOREIGN KEY (`f_id_kategori`) REFERENCES `kategori_alt` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `bobot_kriteria`
+-- Constraints for table `bobot_kriteria`
 --
 ALTER TABLE `bobot_kriteria`
   ADD CONSTRAINT `bobot_kriteria_ibfk_1` FOREIGN KEY (`f_id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kec_alt_kriteria`
+-- Constraints for table `kec_alt_kriteria`
 --
 ALTER TABLE `kec_alt_kriteria`
   ADD CONSTRAINT `kec_alt_kriteria_ibfk_1` FOREIGN KEY (`f_id_alternatif`) REFERENCES `alternatif` (`id_alternatif`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -454,13 +454,13 @@ ALTER TABLE `kec_alt_kriteria`
   ADD CONSTRAINT `kec_alt_kriteria_ibfk_3` FOREIGN KEY (`f_id_sub_kriteria`) REFERENCES `sub_kriteria` (`id_sub_kriteria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `sub_kriteria`
+-- Constraints for table `sub_kriteria`
 --
 ALTER TABLE `sub_kriteria`
   ADD CONSTRAINT `sub_kriteria_ibfk_1` FOREIGN KEY (`f_id_kriteria`) REFERENCES `kriteria` (`id_kriteria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tabel_tampung`
+-- Constraints for table `tabel_tampung`
 --
 ALTER TABLE `tabel_tampung`
   ADD CONSTRAINT `tabel_tampung_ibfk_1` FOREIGN KEY (`f_id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
