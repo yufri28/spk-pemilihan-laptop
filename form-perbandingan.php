@@ -16,9 +16,6 @@ $k = 0;
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
     $matrik = array();
 	$urut 	= 0;
 
@@ -45,41 +42,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $matrik[$i][$i] = 1;
     }
     
-    for ($i = 0; $i <= (count($array) - 2); $i++) {
-		for ($j = ($i + 1); $j <= (count($array) - 1); $j++) {
-            echo $matrik[$i][$j]." ";
+    // for ($i = 0; $i <= (count($array) - 2); $i++) {
+	// 	for ($j = ($i + 1); $j <= (count($array) - 1); $j++) {
+    //         echo $matrik[$i][$j]." ";
           
-		}
-        echo "<br>";
-	}
-    for ($i = 0; $i <= (count($array) - 2); $i++) {
-		for ($j = ($i + 1); $j <= (count($array) - 1); $j++) {
+	// 	}
+    //     echo "<br>";
+	// }
+    // for ($i = 0; $i <= (count($array) - 2); $i++) {
+	// 	for ($j = ($i + 1); $j <= (count($array) - 1); $j++) {
            
-            echo $matrik[$j][$i]." ";
-		}
-        echo "<br>";
-	}
+    //         echo $matrik[$j][$i]." ";
+	// 	}
+    //     echo "<br>";
+	// }
 
-    for ($i = 0; $i < (count($array)); $i++) {
-		for ($j = 0; $j < (count($array)); $j++) {
+    // for ($i = 0; $i < (count($array)); $i++) {
+	// 	for ($j = 0; $j < (count($array)); $j++) {
            
-            echo $matrik[$i][$j]." ";
-		}
-        echo "<br>";
-	}
+    //         echo $matrik[$i][$j]." ";
+	// 	}
+    //     echo "<br>";
+	// }
 
-    echo "<pre>";
-    print_r($matrik);
-    echo "</pre>";
+ 
 
 
-    for ($i = 0; $i < (count($array)); $i++) {
-		for ($j = 0; $j < (count($array)); $j++) {
+    // for ($i = 0; $i < (count($array)); $i++) {
+	// 	for ($j = 0; $j < (count($array)); $j++) {
            
-            echo $matrik[$i][$j]." ";
-		}
-        echo "<br>";
-	}
+    //         echo $matrik[$i][$j]." ";
+	// 	}
+    //     echo "<br>";
+	// }
 
     // inisialisasi jumlah tiap kolom dan baris kriteria
 	$jmlmpb = array();
@@ -122,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
     for ($x=0; $x < (count($matrik)) ; $x++) {
-        echo $x ." : ". $pv[$x];
+        echo ($x+1) ." : ". $pv[$x];
         echo "<br>";
     }
     die;
@@ -151,55 +146,58 @@ $urut = 0;
 <head>
     <title>SPK Pemilihan Laptop</title>
     <style>
-        #mapid {
-            height: 100vh;
-        }
+    #mapid {
+        height: 100vh;
+    }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Prompt&family=Righteous&family=Roboto:wght@500&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Prompt&family=Righteous&family=Roboto:wght@500&display=swap"
+        rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
-.button-like-link {
-    background: none;
-    border: none;
-    color: blue;
-    /* Warna teks mirip tautan */
-    text-decoration: none;
-    /* Garis bawah mirip tautan */
-    cursor: pointer;
-    /* Jika ingin menyesuaikan tampilan saat digerakkan mouse */
-}
+    .button-like-link {
+        background: none;
+        border: none;
+        color: blue;
+        /* Warna teks mirip tautan */
+        text-decoration: none;
+        /* Garis bawah mirip tautan */
+        cursor: pointer;
+        /* Jika ingin menyesuaikan tampilan saat digerakkan mouse */
+    }
 
-.button-like-link:hover {
-    text-decoration: none;
-    /* Menghilangkan garis bawah saat digerakkan mouse */
-    /* Sesuaikan tampilan hover sesuai keinginan */
-}
+    .button-like-link:hover {
+        text-decoration: none;
+        /* Menghilangkan garis bawah saat digerakkan mouse */
+        /* Sesuaikan tampilan hover sesuai keinginan */
+    }
 
-table{
-    font-size: 10pt;
-}
+    table {
+        font-size: 10pt;
+    }
 
-ol{
-    text-align: start;
-}
-</style>
+    ol {
+        text-align: start;
+    }
+    </style>
 </head>
 
 <body>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    let button_like_link = document.getElementById('btn-like-link');
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let button_like_link = document.getElementById('btn-like-link');
 
-    button_like_link.addEventListener('click', function() {
-        Swal.fire({
-        title: 'Panduan',
-        text: 'Langkah-langkah pengisian form perbandingan kriteria:',
-        icon: 'warning',
-        html: `
+        button_like_link.addEventListener('click', function() {
+            Swal.fire({
+                title: 'Panduan',
+                text: 'Langkah-langkah pengisian form perbandingan kriteria:',
+                icon: 'warning',
+                html: `
             <ol>
                 <li>Pilih Kriteria yang lebih penting</li>
                 <li>Masukkan Nilai perbandingannya berdasarkan tabel berikut:</li>
@@ -224,12 +222,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>Klik tombol submit</li>
             </ol>
         `,
-        confirmButtonText: 'Paham'
-    });
+                confirmButtonText: 'Paham'
+            });
 
+        });
     });
-});
-</script>
+    </script>
     <!-- Section: Design Block -->
     <section class="">
         <!-- Jumbotron -->
@@ -245,8 +243,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <div class="card-body shadow-lg d-flex justify-content-center py-5 px-md-5">
                                     <div class="container">
                                         <button type="button" id="btn-like-link"
-                                    class="button-like-link col-lg-12 mb-4 d-flex justify-content-end"><small
-                                        class="">Baca Panduan?</small></button>
+                                            class="button-like-link col-lg-12 mb-4 d-flex justify-content-end"><small
+                                                class="">Baca Panduan?</small></button>
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -257,32 +255,40 @@ document.addEventListener('DOMContentLoaded', function() {
                                             </thead>
                                             <tbody>
                                                 <?php for ($i = 0; $i <= (count($array) - 2); $i++) : ?>
-                                                    <?php for ($j = ($i + 1); $j <= (count($array) - 1); $j++) : ?>
-                                                        <?php $k++; ?>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="form-check me-3">
-                                                                    <input class="form-check-input" type="radio" name="opsi<?= $k ?>" id="flexRadioDefault<?= $k ?>" value="1">
-                                                                    <label class="form-check-label" for="flexRadioDefault<?= $k ?>">
-                                                                        <?= $array[$i]; ?>
-                                                                    </label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="opsi<?= $k ?>" value="2" id="flexRadioDefaults<?= $k ?>">
-                                                                    <label class="form-check-label" for="flexRadioDefaults<?= $k ?>">
-                                                                        <?= $array[$j]; ?>
-                                                                    </label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="mb-3">
-                                                                    <input class="form-control" type="number" placeholder="0" name="bobot<?php echo $k;?>" value="<?php echo $nilai ?>" max="9" required>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    <?php endfor; ?>
+                                                <?php for ($j = ($i + 1); $j <= (count($array) - 1); $j++) : ?>
+                                                <?php $k++; ?>
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check me-3">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="opsi<?= $k ?>" id="flexRadioDefault<?= $k ?>"
+                                                                value="1">
+                                                            <label class="form-check-label"
+                                                                for="flexRadioDefault<?= $k ?>">
+                                                                <?= $array[$i]; ?>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="opsi<?= $k ?>" value="2"
+                                                                id="flexRadioDefaults<?= $k ?>">
+                                                            <label class="form-check-label"
+                                                                for="flexRadioDefaults<?= $k ?>">
+                                                                <?= $array[$j]; ?>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="mb-3">
+                                                            <input class="form-control" type="number" placeholder="0"
+                                                                name="bobot<?php echo $k;?>"
+                                                                value="<?php echo $nilai ?>" max="9" required>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <?php endfor; ?>
                                                 <?php endfor; ?>
                                             </tbody>
                                         </table>
@@ -307,7 +313,8 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <!-- Copyright -->
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
 
 </body>
