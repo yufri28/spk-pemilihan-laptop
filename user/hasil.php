@@ -262,6 +262,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <th>Volume</th>
                                         <th>Kelengkapan</th>
                                         <th>Merek</th>
+                                        <th class="text-primary">B.RAM</th>
+                                        <th class="text-primary">B.Merk Processor</th>
+                                        <th class="text-primary">B.Harga</th>
+                                        <th class="text-primary">B.Ukuran Penyimpanan</th>
+                                        <th class="text-primary">B.Jenis Penyimpanan</th>
+                                        <th class="text-primary">B.Sistem Operasi</th>
+                                        <th class="text-primary">B.Daya Tahan Baterai</th>
+                                        <th class="text-primary">B.Ukuran Layar</th>
                                         <th>Preferensi</th>
                                     </tr>
                                 </thead>
@@ -282,6 +290,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <td><?=$preferensi['nama_C3'];?></td>
                                         <td><?=$preferensi['nama_C4'];?></td>
                                         <td><?=$preferensi['nama_C5'];?></td>
+                                        <td><?=$c1;?></td>
+                                        <td><?=$c2;?></td>
+                                        <td><?=$c3;?></td>
+                                        <td><?=$c4;?></td>
+                                        <td><?=$c5;?></td>
+                                        <td><?=$c6;?></td>
+                                        <td><?=$c7;?></td>
+                                        <td><?=$c8;?></td>
                                         <td><?=$preferensi['preferensi'] != 0 ? $preferensi['preferensi']:0;?></td>
                                     </tr>
                                     <?php endforeach;?>
