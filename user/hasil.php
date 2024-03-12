@@ -244,8 +244,9 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="card-body">
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3 d-flex">
                         <h6 class="m-0 font-weight-bold text-primary">Hasil Perengkingan</h6>
+                        <button class="btn ml-auto btn-secondary" onclick="printTable()">Cetak Hasil</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -257,11 +258,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <th>Nama Laptop</th>
                                         <th>Gambar</th>
                                         <th>Kategori</th>
+                                        <th>RAM</th>
+                                        <th>Merek Prosesor</th>
                                         <th>Harga</th>
-                                        <th>Kualitas</th>
-                                        <th>Volume</th>
-                                        <th>Kelengkapan</th>
-                                        <th>Merek</th>
+                                        <th>Ukuran Penyimpanan</th>
+                                        <th>Jenis Penyimpanan</th>
+                                        <th>Sistem Operasi</th>
+                                        <th>Daya Tahan Baterai</th>
+                                        <th>Ukuran Layar</th>
                                         <th class="text-primary">B.RAM</th>
                                         <th class="text-primary">B.Merk Processor</th>
                                         <th class="text-primary">B.Harga</th>
@@ -290,6 +294,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <td><?=$preferensi['nama_C3'];?></td>
                                         <td><?=$preferensi['nama_C4'];?></td>
                                         <td><?=$preferensi['nama_C5'];?></td>
+                                        <td><?=$preferensi['nama_C6'];?></td>
+                                        <td><?=$preferensi['nama_C7'];?></td>
+                                        <td><?=$preferensi['nama_C8'];?></td>
                                         <td><?=$c1;?></td>
                                         <td><?=$c2;?></td>
                                         <td><?=$c3;?></td>
@@ -379,4 +386,69 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 </div>
+
+<script>
+function printTable() {
+
+    var printWindow = window.open("", "_blank");
+    printWindow.document.write("<html><head><title>Data Laptop</title>");
+    printWindow.document.write("<style>");
+    printWindow.document.write("table { width: 100%; border-collapse: collapse; }");
+    printWindow.document.write("th, td { border: 1px solid black; padding: 8px; text-align: left; }");
+    printWindow.document.write("</style>");
+    printWindow.document.write("</head><body>");
+
+    <?php
+    echo 'printWindow.document.write(\'';
+    echo '<table class="" id="dataLaptops" style="width:100%;">';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th>No</th>';
+    echo '<th>Nama Laptop</th>';
+    echo '<th>Gambar</th>';
+    echo '<th>Kategori</th>';
+    echo '<th>RAM</th>';
+    echo '<th>Merek Prosesor</th>';
+    echo '<th>Harga</th>';
+    echo '<th>Ukuran Penyimpanan</th>';
+    echo '<th>Jenis Penyimpanan</th>';
+    echo '<th>Sistem Operasi</th>';
+    echo '<th>Daya Tahan Baterai</th>';
+    echo ' <th>Ukuran Layar</th>';
+    echo '<th>Preferensi</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
+    
+    foreach ($dataPreferensi as $key => $preferensi){
+        echo '<tr>';
+        echo '<td>'.($key+1).'</td>';
+        echo '<td>'.$preferensi['nama_alternatif'].'</td>';
+        echo '<td><a href="../images/'.$preferensi['gambar'].'" data-lightbox="image-1" data-title="'.$preferensi['nama_alternatif'].'">';
+        echo '<img style="width: 50px; height: 50px;" src="../images/'.$preferensi['gambar'].'" alt="Gambar '.$preferensi['nama_alternatif'].'">';
+        echo '</a></td>';
+        echo '<td>'.$preferensi['nama_kategori'].'</td>';
+        echo '<td>'.$preferensi['nama_C1'].'</td>';
+        echo '<td>'.$preferensi['nama_C2'].'</td>';
+        echo '<td>'.$preferensi['nama_C3'].'</td>';
+        echo '<td>'.$preferensi['nama_C4'].'</td>';
+        echo '<td>'.$preferensi['nama_C5'].'</td>';
+        echo '<td>'.$preferensi['nama_C6'].'</td>';
+        echo '<td>'.$preferensi['nama_C7'].'</td>';
+        echo '<td>'.$preferensi['nama_C8'].'</td>';
+        echo '<td>'.($preferensi['preferensi'] != 0 ? $preferensi['preferensi'] : 0).'</td>';
+        echo '</tr>';
+    }
+
+    echo '</tbody></table>';
+    echo '\');';
+    ?>
+
+    printWindow.document.write("</body></html>");
+    printWindow.document.close();
+    printWindow.print();
+}
+</script>
+
+
 <?php require_once './footer.php';?>
